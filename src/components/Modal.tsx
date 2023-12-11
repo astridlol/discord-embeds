@@ -1,17 +1,21 @@
 import React, { FunctionComponent } from "react";
 import { Modal, Button, Text } from "@nextui-org/react";
-import { URL } from "../lib/constants";
+//import { URL } from "../lib/constants";
 
 type Props = {
+  modalContent: {
+    text: string;
+    button: string;
+    url?: string;
+  };
   visible: boolean;
   closeHandler: () => void;
-  url: string;
 };
 
 const SuccessModal: FunctionComponent<Props> = ({
+  modalContent,
   visible,
-  closeHandler,
-  url,
+  closeHandler
 }) => {
   return (
     <>
@@ -24,7 +28,7 @@ const SuccessModal: FunctionComponent<Props> = ({
       >
         <Modal.Header>
           <Text h3>
-            Successfully created embed!
+            {modalContent.text}
           </Text>
         </Modal.Header>
         <Modal.Footer>
@@ -32,10 +36,10 @@ const SuccessModal: FunctionComponent<Props> = ({
             auto
             onClick={() => {
               closeHandler();
-              navigator.clipboard.writeText(url);
+              {modalContent.url && navigator.clipboard.writeText(modalContent.url)}
             }}
           >
-            Copy Link
+            {modalContent.button}
           </Button>
         </Modal.Footer>
       </Modal>

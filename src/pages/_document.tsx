@@ -13,8 +13,10 @@ class MyDocument extends Document {
 
     render() {
         return (
-            <Html lang="en">
-                <Head>{CssBaseline.flush()}</Head>
+            <Html lang="en" className={"overflow-hidden"}>
+                <Head>
+                {CssBaseline.flush()}
+                </Head>
                 <body>
                 <Main />
                 <NextScript />
